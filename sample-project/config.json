@@ -1,0 +1,6 @@
+{
+  "name": "psz-test-sample",
+  "version": "1.0.0",
+  "description": "Sample data for testing the PSZ encrypted archive format",
+  "encrypted": true
+}
