@@ -1,0 +1,2 @@
+This is a nested file inside sample-project/subdir/
+Used to test that directory structure is preserved in the .psz archive.
