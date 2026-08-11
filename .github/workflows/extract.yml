@@ -1,4 +1,4 @@
-name: Build and create PSZ archive
+name: Extract PSZ archive
 
 on:
   push:
@@ -25,15 +25,14 @@ jobs:
 
       - name: Create encrypted PSZ archive
         run: |
-          psz open extract/release.psz extract/my-project.psz-data.lor -o extracted/
-          echo "Created files:"
-          ls -lh demo.psz demo.psz-data.lor
+          psz open extract/release.psz extract/release.psz-data.lor -o extracted/
+          echo "Extracted files:"
+          ls extracted
 
       - name: Upload PSZ artifacts
         uses: actions/upload-artifact@v4
         with:
           name: psz-demo-archive
           path: |
-            demo.psz
-            demo.psz-data.lor
+            extracted
           retention-days: 30
