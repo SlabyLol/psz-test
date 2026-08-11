@@ -1,0 +1,39 @@
+name: Build and create PSZ archive
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PSZ
+        run: |
+          pip install git+https://github.com/SlabyLol/psz.git
+          psz --version
+
+      - name: Create encrypted PSZ archive
+        run: |
+          psz open extract/release.psz extract/my-project.psz-data.lor -o extracted/
+          echo "Created files:"
+          ls -lh demo.psz demo.psz-data.lor
+
+      - name: Upload PSZ artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: psz-demo-archive
+          path: |
+            demo.psz
+            demo.psz-data.lor
+          retention-days: 30
