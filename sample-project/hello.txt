@@ -1,0 +1,4 @@
+Hello from the PSZ test project!
+
+This file is inside the sample-project folder.
+It will be packed into an encrypted .psz archive by the GitHub Action.
